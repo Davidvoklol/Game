@@ -4,10 +4,10 @@ import os
 
 window = tk.Tk()
 window.geometry("500x300")
-window.config(bg="gray")
+window.config(bg="#fb551c")
 window.title("Idle Game")
 
-tk.Label(window, text="Lobster Manager", font=("Consolas", 40, "bold"), bg="gray").pack(fill="x", pady=10)
+tk.Label(window, text="Lobster Manager", font=("Consolas", 40, "bold"), bg="#fb551c").pack(fill="x", pady=10)
 
 download = tk.Button(window, text="DOWNLOAD GAME", font=("Fixedsys", 20, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").pack(pady=5)
 update = tk.Button(window, text="UPDATE GAME", font=("Fixedsys", 20, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").pack(pady=5)
