@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
+
 class Game:
     def __init__(self, bg):
         self.bg = bg
@@ -100,3 +101,4 @@ class Game:
         self.window.mainloop()
 
 Game("#fb551c")
+
