@@ -34,12 +34,3 @@ populate(frame)
 root.mainloop()
 
 
-
-"""def Download():
-    if os.path.exists("C:/Users/user") == True:
-        if "Idle Lobster" in os.listdir("C:/Users/user/"):
-            print("Already downloaded!")
-        else:
-            os.mkdir("C:/Users/user/Idle Lobster")
-    else:
-        pass"""
