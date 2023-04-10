@@ -1,6 +1,11 @@
 import tkinter as tk
 from tkinter import messagebox
+from data.default_data import *
+from data.user_data import *
 
+class User():
+    def __init__(user):
+        pass
 
 class Game:
     def __init__(self, bg):
@@ -21,7 +26,7 @@ class Game:
         tk.Label(self.header, text="Idle Lobster", bg=self.bg, font=("Terminal", 50, "bold")).grid(row=0, columnspan=2, sticky=tk.W + tk.E)
         self.frame_money = tk.Frame(self.header, bg="black")
         self.frame_money.grid(row=1, column=0, sticky=tk.W)
-        self.display_money = tk.Label(self.frame_money, text="Money: 0$", bg=self.bg, font=("Terminal", 25, "bold")).pack(padx=3, pady=3)
+        self.display_money = tk.Label(self.frame_money, text="Money: " + str(cash) + "$", bg=self.bg, font=("Terminal", 25, "bold")).pack(padx=3, pady=3)
         self.frame_lobster = tk.Frame(self.header, bg="black")
         self.frame_lobster.grid(row=1, column=1, sticky=tk.E)
         self.display_lobster = tk.Label(self.frame_lobster, text="Lobsters: 0$", bg=self.bg, font=("Terminal", 25, "bold")).pack(padx=3, pady=3)
@@ -55,7 +60,7 @@ class Game:
         self.platform1.columnconfigure(3, weight=1)
         self.platform1.grid(row=0, column=1, sticky=tk.W + tk.E)
 
-        self.button_taptap = tk.Button(self.platform1, text="0$ / TAP", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white").grid(row=0, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        self.button_taptap = tk.Button(self.platform1, command=self.taptap, text="0$ / TAP", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white").grid(row=0, columnspan=4, sticky=tk.W + tk.E, pady=5)
         self.label_taptap = tk.Label(self.platform1, text="TapTap Lobster: lvl 0", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d").grid(row=1, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         self.button_upgrade_taptap = tk.Button(self.platform1, text="Upgrade: 000$", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white").grid(row=1, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
@@ -99,6 +104,15 @@ class Game:
         #   Platform2
 
         self.window.mainloop()
+
+    def taptap(self):
+        pass
+
+    def check_values(self):
+        with open("data/user_data.py") as f:
+            print(f.read())
+
+
 
 Game("#fb551c")
 
