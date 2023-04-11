@@ -1,3 +1,3 @@
 cheat_state = "None"
-cheat_code = ["c", "h", "e", "a", "t"]
-cheat_code_input = []
+cheat_code = "cheat"
+cheat_code_input = ""
