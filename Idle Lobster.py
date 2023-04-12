@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox
 from data.default_data import *
 from data.user_data import *
-from data.cheat_data import *
 
 class User():
     def __init__(user):
