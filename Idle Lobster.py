@@ -17,7 +17,6 @@ class Game:
         self.window.geometry("1600x1000")
         self.window.config(bg=self.bg)
         self.window.title("Idle Game")
-        self.window.bind("<KeyPress>", self.cheat_activation)
         #   Game Setup
 
         #   Header
@@ -136,22 +135,36 @@ class Game:
     
     
     def check_upgrades(self):
-        global cash, tap_upgrade_cost, bob_unlcok_cost
+        global cash, tap_upgrade_cost, bob_unlcok_cost, doodle_unlcok_cost, doodle_state
 
         if cash >= tap_upgrade_cost:
             self.button_upgrade_taptap.config(state="active")
         else:
             self.button_upgrade_taptap.config(state="disabled")
-        
+
+        # bob
         if cash >= bob_unlcok_cost and bob_state == "active":
             self.button_unlock_bob.config(state="active")
         elif cash < bob_unlcok_cost and bob_state == "active":
             self.button_unlock_bob.config(state="disabled")
 
-        if cash >= bob_upgrade_cost and self.button_bob.cget("text") != "--------":
+        if cash >= bob_upgrade_cost and bob_state == "destroyed":
             self.button_bob.config(state="active")
         else:
             self.button_bob.config(state="disabled")
+
+        # doodle
+        if cash >= doodle_unlcok_cost and doodle_state == "active":
+            self.button_unlock_doodle.config(state="active")
+        elif cash < doodle_unlcok_cost and doodle_state == "active":
+            self.button_unlock_doodle.config(state="disabled")
+
+        if cash >= doodle_upgrade_cost and doodle_state == "destroyed":
+            self.button_doodle.config(state="active")
+        else:
+            self.button_doodle.config(state="disabled")
+
+        # winky
 
 
     def taptap(self):
@@ -173,7 +186,7 @@ class Game:
         self.check_upgrades()
     
     def bob_purchase(self):
-        global cash, bob_unlcok_cost, bob_state, bob_earning
+        global cash, bob_unlcok_cost, bob_state
         cash -= bob_unlcok_cost
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_bob.destroy()
@@ -226,31 +239,6 @@ class Game:
 
     def winky_purchase():
         pass
-
-
-
-    
-    def cheat_activation(self, event):
-        global cheat_state, cheat_code, cash, cheat_code_input
-        print("Pressed Key: ", event.state, event.keysym)
-        if cheat_state == "Cancaled" and event.keysym == "Return" and event.state == 131076:
-            cheat_state = "Activated"
-            print("Activated")
-        elif cheat_state == "Activated" and event.keysym in cheat_code and event.state == 0:
-            cheat_code_input += event.keysym
-            print(cheat_code_input)
-            if cheat_code_input == cheat_code:
-                print("The cheat turned on")
-                cash = 1000000
-                self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
-                self.check_upgrades()
-                cheat_code_input = ""
-                cheat_state = "Cancaled"
-        else:
-            cheat_state = "Cancaled"
-            cheat_code_input = ""
-            print(cheat_code_input)
-            print("Cancaled")
 
         
 

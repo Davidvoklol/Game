@@ -1,2 +1,2 @@
 name = ""
-cash = 0
+cash = 60000
