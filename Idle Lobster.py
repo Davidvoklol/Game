@@ -79,12 +79,14 @@ class Game:
         self.button_bob = tk.Button(self.platform1, command=self.bob_upgrade, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_bob.grid(row=3, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
-        self.button_unlock_doodle = tk.Button(self.platform1, command=self.bob_purchase, text="UNLOCK A NEW LOBSTER: " + str(doodle_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+        self.button_unlock_doodle = tk.Button(self.platform1, command=self.doodle_purchase, text="UNLOCK A NEW LOBSTER: " + str(doodle_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
 
         self.label_doodle = tk.Label(self.platform1, text="Lobster: ---", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d")
         self.label_doodle.grid(row=5, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         self.button_doodle = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_doodle.grid(row=5, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
+        
+        self.button_unlock_winky = tk.Button(self.platform1, command=self.winky_purchase, text="UNLOCK A NEW LOBSTER: " + str(doodle_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         
         self.label_winky = tk.Label(self.platform1, text="Lobster: ---", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d")
         self.label_winky.grid(row=7, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
@@ -135,6 +137,7 @@ class Game:
     
     def check_upgrades(self):
         global cash, tap_upgrade_cost, bob_unlcok_cost
+
         if cash >= tap_upgrade_cost:
             self.button_upgrade_taptap.config(state="active")
         else:
@@ -144,8 +147,8 @@ class Game:
             self.button_unlock_bob.config(state="active")
         elif cash < bob_unlcok_cost and bob_state == "active":
             self.button_unlock_bob.config(state="disabled")
-        
-        if cash >= bob_upgrade_cost:
+
+        if cash >= bob_upgrade_cost and self.button_bob.cget("text") != "--------":
             self.button_bob.config(state="active")
         else:
             self.button_bob.config(state="disabled")
@@ -170,7 +173,7 @@ class Game:
         self.check_upgrades()
     
     def bob_purchase(self):
-        global cash, bob_unlcok_cost, bob_state
+        global cash, bob_unlcok_cost, bob_state, bob_earning
         cash -= bob_unlcok_cost
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_bob.destroy()
@@ -179,6 +182,14 @@ class Game:
         self.label_bob.config(text="Bob Lobster: lvl " + str(bob_lvl))
         self.button_bob.config(text="Upgrade: " + str(round(bob_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.bob_earning()
+    
+    def bob_earning(self):
+        global cash, bob_value
+        cash += bob_value
+        self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
+        self.window.after(1000, self.bob_earning)
+        self.check_upgrades()
 
     def bob_upgrade(self):
         global bob_lvl, bob_upgrade_cost, cash, bob_value, bob_unlcok_cost
@@ -186,11 +197,35 @@ class Game:
         bob_lvl += 1
         bob_value = bob_unlcok_cost / 500 * bob_lvl
         bob_upgrade_cost = bob_value * bob_lvl * 100
-        self.display_money.config(text="MOney: " + str(round(cash, 2)) + "$")
+        self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_bob.config(text="Bob Lobster: lvl " + str(bob_lvl))
         self.button_bob.config(text="Upgrade: " + str(round(bob_upgrade_cost, 2)) + "$")
         self.check_upgrades()
     
+    def doodle_purchase(self):
+        global cash, doodle_unlcok_cost, doodle_state
+        cash -= doodle_unlcok_cost
+        self.display_money.config(text="Money: " + str(round(cash, 2)))
+        self.button_unlock_doodle.destroy()
+        self.button_unlock_winky.grid(row=6, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        doodle_state = "destroyed"
+        self.label_doodle.config(text="doodle Lobster: lvl " + str(doodle_lvl))
+        self.button_doodle.config(text="Upgrade: " + str(round(doodle_upgrade_cost, 2)) + "$")
+        self.check_upgrades()
+
+    def doodle_upgrade(self):
+        global doodle_lvl, doodle_upgrade_cost, cash, doodle_value, doodle_unlcok_cost
+        cash -= doodle_upgrade_cost
+        doodle_lvl += 1
+        doodle_value = doodle_unlcok_cost / 500 * doodle_lvl
+        doodle_upgrade_cost = doodle_value * doodle_lvl * 100
+        self.display_money.config(text="MOney: " + str(round(cash, 2)) + "$")
+        self.label_doodle.config(text="doodle Lobster: lvl " + str(doodle_lvl))
+        self.button_doodle.config(text="Upgrade: " + str(round(doodle_upgrade_cost, 2)) + "$")
+        self.check_upgrades()
+
+    def winky_purchase():
+        pass
 
 
 

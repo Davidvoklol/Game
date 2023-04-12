@@ -9,7 +9,7 @@ tap_upgrade_cost = tap_value * 3 + (tap_lvl * tap_value)
 bob_state = "active"
 bob_unlcok_cost = 10000
 bob_lvl = 1
-bob_value = bob_unlcok_cost / 500 * bob_lvl
+bob_value = bob_unlcok_cost / 500 * bob_lvl # / sec
 bob_upgrade_cost = bob_value * bob_lvl * 100
 
 doodle_state = "active"
