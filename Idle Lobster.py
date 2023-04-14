@@ -91,6 +91,8 @@ class Game:
         self.button_winky = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_winky.grid(row=7, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
+        self.button_unlock_fred = tk.Button(self.platform1, command=self.fred_purchase, text="UNLOCK A NEW LOBSTER: " + str(fred_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+
         self.label_fred = tk.Label(self.platform1, text="Lobster: ---", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d")
         self.label_fred.grid(row=9, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         self.button_fred = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
@@ -231,12 +233,23 @@ class Game:
         doodle_lvl += 1
         doodle_value = doodle_unlcok_cost / 500 * doodle_lvl
         doodle_upgrade_cost = doodle_value * doodle_lvl * 100
-        self.display_money.config(text="MOney: " + str(round(cash, 2)) + "$")
+        self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_doodle.config(text="doodle Lobster: lvl " + str(doodle_lvl))
         self.button_doodle.config(text="Upgrade: " + str(round(doodle_upgrade_cost, 2)) + "$")
         self.check_upgrades()
 
-    def winky_purchase():
+    def winky_purchase(self):
+        global cash, winky_unlcok_cost, winky_state
+        cash -= winky_unlcok_cost
+        self.display_money.config(text="Money: " + str(round(cash, 2)))
+        self.button_unlock_winky.destroy()
+        self.button_unlock_winky.grid(row=6, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        winky_state = "destroyed"
+        self.label_winky.config(text="winky Lobster: lvl " + str(winky_lvl))
+        self.button_winky.config(text="Upgrade: " + str(round(winky_upgrade_cost, 2)) + "$")
+        self.check_upgrades()
+    
+    def fred_purchase():
         pass
 
         
