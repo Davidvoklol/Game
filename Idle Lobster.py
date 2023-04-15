@@ -112,7 +112,7 @@ class Game:
         self.button_larry = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_larry.grid(row=13, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
-        self.button_unlock_david = tk.Button(self.platform1, text="UNLOCK A NEW LOBSTER: " + str(david_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+        self.button_unlock_david = tk.Button(self.platform1, command=self.david_purchase, text="UNLOCK A NEW LOBSTER: " + str(david_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
 
         self.frame_david = tk.Frame(self.platform1, bg="black")
         self.frame_david.columnconfigure(0, weight=1)
@@ -215,8 +215,6 @@ class Game:
         else:
             self.button_larry.config(state="disabled")
 
-        
-
 
     def taptap(self):
         global cash, tap_value
@@ -228,8 +226,8 @@ class Game:
         global cash, tap_upgrade_cost, tap_lvl, tap_value
         cash -= tap_upgrade_cost
         tap_lvl += 1
-        tap_value += tap_lvl * 1.5
-        tap_upgrade_cost = tap_value * 3 + (tap_lvl * tap_value)
+        tap_value += tap_lvl * 0.5
+        tap_upgrade_cost = tap_upgrade_cost = tap_value * 5 + tap_lvl ** 2.6
         self.label_taptap.config(text="TapTap Lobster: lvl " + str(tap_lvl))
         self.button_upgrade_taptap.config(text="Upgrade: " + str(round(tap_upgrade_cost, 2)) + "$")
         self.button_taptap.config(text=str(round(tap_value, 2)) + "$ / TAP")
@@ -415,6 +413,36 @@ class Game:
         self.label_larry.config(text="Larry Lobster: lvl " + str(larry_lvl))
         self.button_larry.config(text="Upgrade: " + str(round(larry_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+    
+    def david_purchase(self):
+        global cash, david_unlcok_cost, david_state
+        cash -= david_unlcok_cost
+        self.display_money.config(text="Money: " + str(round(cash, 2)))
+        self.button_unlock_david.destroy()
+        david_state = "destroyed"
+        self.label_david.config(text="David Lobster: lvl " + str(david_lvl))
+        self.button_david.config(text="Upgrade: " + str(round(david_upgrade_cost, 2)) + "$")
+        self.david_earning()
+    
+    def david_earning(self):
+        global cash, david_value
+        cash += david_value
+        self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
+        self.window.after(1000, self.david_earning)
+        self.check_upgrades()
+    
+    def david_upgrade(self):
+        global david_lvl, david_upgrade_cost, cash, david_value, david_unlcok_cost
+        cash -= david_upgrade_cost
+        david_lvl += 1
+        david_value = david_unlcok_cost / 500 * david_lvl
+        david_upgrade_cost = david_value * david_lvl * 100
+        self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
+        self.label_david.config(text="david Lobster: lvl " + str(david_lvl))
+        self.button_david.config(text="Upgrade: " + str(round(david_upgrade_cost, 2)) + "$")
+        self.check_upgrades()
+
+    
 
     
 User()

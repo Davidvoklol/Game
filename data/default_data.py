@@ -3,14 +3,14 @@ cash = 0
 golden_lobster = 0
 
 tap_lvl = 1
-tap_value = 1.5 #tap_value += tap_lvl * 1.5
-tap_upgrade_cost = tap_value * 3 + (tap_lvl * tap_value)
+tap_value = tap_lvl * 0.5
+tap_upgrade_cost = tap_upgrade_cost = tap_value * 5 + tap_lvl ** 2.6
 
 bob_state = "active"
 bob_unlcok_cost = 10000
 bob_lvl = 1
-bob_value = bob_unlcok_cost / 500 * bob_lvl # / sec
-bob_upgrade_cost = bob_value * bob_lvl * 100
+bob_value = 1
+bob_upgrade_cost = 1
 
 doodle_state = "active"
 doodle_unlcok_cost = 50000
