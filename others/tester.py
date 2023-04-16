@@ -1,5 +1,6 @@
-from data.default_data import *
 
+
+"""
 def taptap(a):
     for x in range(a):
         global tap_lvl, tap_value, tap_upgrade_cost
@@ -28,4 +29,6 @@ def doodle(a):
     for x in range(a):
         pass
 
+bob(100)
+"""
     
