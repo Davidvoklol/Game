@@ -81,35 +81,35 @@ class Game:
 
         self.label_doodle = tk.Label(self.platform1, text="Lobster: ---", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d")
         self.label_doodle.grid(row=5, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
-        self.button_doodle = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+        self.button_doodle = tk.Button(self.platform1, command=self.doodle_upgrade, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_doodle.grid(row=5, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
         self.button_unlock_winky = tk.Button(self.platform1, command=self.winky_purchase, text="UNLOCK A NEW LOBSTER: " + str(winky_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         
         self.label_winky = tk.Label(self.platform1, text="Lobster: ---", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d")
         self.label_winky.grid(row=7, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
-        self.button_winky = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+        self.button_winky = tk.Button(self.platform1, command=self.winky_upgrade, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_winky.grid(row=7, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
         self.button_unlock_fred = tk.Button(self.platform1, command=self.fred_purchase, text="UNLOCK A NEW LOBSTER: " + str(fred_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
 
         self.label_fred = tk.Label(self.platform1, text="Lobster: ---", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d")
         self.label_fred.grid(row=9, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
-        self.button_fred = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+        self.button_fred = tk.Button(self.platform1, command=self.fred_upgrade, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_fred.grid(row=9, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
         self.button_unlock_giggles = tk.Button(self.platform1, command=self.giggles_purchase, text="UNLOCK A NEW LOBSTER: " + str(giggles_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
 
         self.label_giggles = tk.Label(self.platform1, text="Lobster: ---", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d")
         self.label_giggles.grid(row=11, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
-        self.button_giggles = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+        self.button_giggles = tk.Button(self.platform1, command=self.giggles_upgrade, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_giggles.grid(row=11, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
         self.button_unlock_larry = tk.Button(self.platform1, command=self.larry_purchase, text="UNLOCK A NEW LOBSTER: " + str(larry_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
 
         self.label_larry = tk.Label(self.platform1, text="Lobster: ---", height=3, width=1, font=("Courier", 14, "bold"), relief="solid", bg="#cc562d")
         self.label_larry.grid(row=13, column=0, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
-        self.button_larry = tk.Button(self.platform1, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+        self.button_larry = tk.Button(self.platform1, command=self.larry_upgrade, text="--------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_larry.grid(row=13, column=2, columnspan=2, sticky=tk.W + tk.E, padx=2.5)
         
         self.button_unlock_david = tk.Button(self.platform1, command=self.david_purchase, text="UNLOCK A NEW LOBSTER: " + str(david_unlcok_cost) + "$", height=2, width=1, font=("Lucida Console", 20, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
@@ -227,7 +227,7 @@ class Game:
         cash -= tap_upgrade_cost
         tap_lvl += 1
         tap_value += tap_lvl * 0.5
-        tap_upgrade_cost = tap_upgrade_cost = tap_value * 5 + tap_lvl ** 2.6
+        tap_upgrade_cost = tap_value * 5 + tap_lvl ** 2.6
         self.label_taptap.config(text="TapTap Lobster: lvl " + str(tap_lvl))
         self.button_upgrade_taptap.config(text="Upgrade: " + str(round(tap_upgrade_cost, 2)) + "$")
         self.button_taptap.config(text=str(round(tap_value, 2)) + "$ / TAP")
@@ -287,8 +287,8 @@ class Game:
         global doodle_lvl, doodle_upgrade_cost, cash, doodle_value, doodle_unlcok_cost
         cash -= doodle_upgrade_cost
         doodle_lvl += 1
-        doodle_value = ((doodle_lvl / 2) ** 2) * 2.5
-        doodle_upgrade_cost = doodle_value * 60 + doodle_lvl ** 3.61
+        doodle_value = ((doodle_lvl / 2) ** 2) * 2.2
+        doodle_upgrade_cost = doodle_value * 60 + doodle_lvl ** 3.581
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_doodle.config(text="Doodle Lobster: lvl " + str(doodle_lvl))
         self.button_doodle.config(text="Upgrade: " + str(round(doodle_upgrade_cost, 2)) + "$")
@@ -317,8 +317,8 @@ class Game:
         global winky_lvl, winky_upgrade_cost, cash, winky_value, winky_unlcok_cost
         cash -= winky_upgrade_cost
         winky_lvl += 1
-        winky_value = ((winky_lvl / 2) ** 2) * 3.5
-        winky_upgrade_cost = winky_value * 60 + winky_lvl ** 3.75
+        winky_value = ((winky_lvl / 2) ** 2) * 3.6
+        winky_upgrade_cost = winky_value * 60 + winky_lvl ** 3.752
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_winky.config(text="Winky Lobster: lvl " + str(winky_lvl))
         self.button_winky.config(text="Upgrade: " + str(round(winky_upgrade_cost, 2)) + "$")
@@ -347,8 +347,8 @@ class Game:
         global fred_lvl, fred_upgrade_cost, cash, fred_value, fred_unlcok_cost
         cash -= fred_upgrade_cost
         fred_lvl += 1
-        fred_value = ((fred_lvl / 2) ** 2) * 4.5
-        fred_upgrade_cost = fred_value * 60 + fred_lvl ** 3.85
+        fred_value = ((fred_lvl / 2) ** 2) * 5.2
+        fred_upgrade_cost = fred_value * 60 + fred_lvl ** 3.881
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_fred.config(text="Fred Lobster: lvl " + str(fred_lvl))
         self.button_fred.config(text="Upgrade: " + str(round(fred_upgrade_cost, 2)) + "$")
@@ -377,8 +377,8 @@ class Game:
         global giggles_lvl, giggles_upgrade_cost, cash, giggles_value, giggles_unlcok_cost
         cash -= giggles_upgrade_cost
         giggles_lvl += 1
-        giggles_value = giggles_unlcok_cost / 500 * giggles_lvl
-        giggles_upgrade_cost = giggles_value * giggles_lvl * 100
+        giggles_value = ((giggles_lvl / 2) ** 2) * 7
+        giggles_upgrade_cost = giggles_value * 60 + giggles_lvl ** 4.009
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_giggles.config(text="Giggles Lobster: lvl " + str(giggles_lvl))
         self.button_giggles.config(text="Upgrade: " + str(round(giggles_upgrade_cost, 2)) + "$")
@@ -407,8 +407,8 @@ class Game:
         global larry_lvl, larry_upgrade_cost, cash, larry_value, larry_unlcok_cost
         cash -= larry_upgrade_cost
         larry_lvl += 1
-        larry_value = larry_unlcok_cost / 500 * larry_lvl
-        larry_upgrade_cost = larry_value * larry_lvl * 100
+        larry_value = ((larry_lvl / 2) ** 2) * 9
+        larry_upgrade_cost = larry_value * 60 + larry_lvl ** 4.094
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_larry.config(text="Larry Lobster: lvl " + str(larry_lvl))
         self.button_larry.config(text="Upgrade: " + str(round(larry_upgrade_cost, 2)) + "$")
