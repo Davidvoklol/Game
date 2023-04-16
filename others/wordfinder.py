@@ -5,7 +5,7 @@ with open("Idle Lobster.py", "r") as f:
     a = f.readlines()
     for x in a:
         if b in x:
-            print("Sor szám:", a.index(x), "-->", a[a.index(x)])
+            print("Sor szám:", a.index(x) + 1, "-->", a[a.index(x)])
             c += 1
 if c == 0:
     print("Not found")

@@ -257,8 +257,8 @@ class Game:
         global bob_lvl, bob_upgrade_cost, cash, bob_value, bob_unlcok_cost
         cash -= bob_upgrade_cost
         bob_lvl += 1
-        bob_value = bob_unlcok_cost / 500 * bob_lvl
-        bob_upgrade_cost = bob_value * bob_lvl * 100
+        bob_value = (bob_lvl / 2) ** 2
+        bob_upgrade_cost = bob_value * 60 + bob_lvl ** 3.32
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_bob.config(text="Bob Lobster: lvl " + str(bob_lvl))
         self.button_bob.config(text="Upgrade: " + str(round(bob_upgrade_cost, 2)) + "$")
@@ -287,8 +287,8 @@ class Game:
         global doodle_lvl, doodle_upgrade_cost, cash, doodle_value, doodle_unlcok_cost
         cash -= doodle_upgrade_cost
         doodle_lvl += 1
-        doodle_value = doodle_unlcok_cost / 500 * doodle_lvl
-        doodle_upgrade_cost = doodle_value * doodle_lvl * 100
+        doodle_value = ((doodle_lvl / 2) ** 2) * 2.5
+        doodle_upgrade_cost = doodle_value * 60 + doodle_lvl ** 3.61
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_doodle.config(text="Doodle Lobster: lvl " + str(doodle_lvl))
         self.button_doodle.config(text="Upgrade: " + str(round(doodle_upgrade_cost, 2)) + "$")
@@ -317,8 +317,8 @@ class Game:
         global winky_lvl, winky_upgrade_cost, cash, winky_value, winky_unlcok_cost
         cash -= winky_upgrade_cost
         winky_lvl += 1
-        winky_value = winky_unlcok_cost / 500 * winky_lvl
-        winky_upgrade_cost = winky_value * winky_lvl * 100
+        winky_value = ((winky_lvl / 2) ** 2) * 3.5
+        winky_upgrade_cost = winky_value * 60 + winky_lvl ** 3.75
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_winky.config(text="Winky Lobster: lvl " + str(winky_lvl))
         self.button_winky.config(text="Upgrade: " + str(round(winky_upgrade_cost, 2)) + "$")
@@ -347,8 +347,8 @@ class Game:
         global fred_lvl, fred_upgrade_cost, cash, fred_value, fred_unlcok_cost
         cash -= fred_upgrade_cost
         fred_lvl += 1
-        fred_value = fred_unlcok_cost / 500 * fred_lvl
-        fred_upgrade_cost = fred_value * fred_lvl * 100
+        fred_value = ((fred_lvl / 2) ** 2) * 4.5
+        fred_upgrade_cost = fred_value * 60 + fred_lvl ** 3.85
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
         self.label_fred.config(text="Fred Lobster: lvl " + str(fred_lvl))
         self.button_fred.config(text="Upgrade: " + str(round(fred_upgrade_cost, 2)) + "$")
