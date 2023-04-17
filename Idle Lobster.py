@@ -5,7 +5,10 @@ from data.user_data import *
 
 class User():
     def __init__(user):
-        pass
+        user.window = tk.Tk()
+        user.window.title("Beginning")
+        user.title = tk.Label()
+        user.window.mainloop()
 
 class Game:
     def __init__(self, bg):
@@ -45,12 +48,15 @@ class Game:
 
 
         #   Platform0
-        self.platform0 = tk.Frame(self.game_platform, bg=self.bg)
+        self.platform0 = tk.Frame(self.game_platform, bg="gray")
         self.platform0.columnconfigure(0, weight=1)
         self.platform0.columnconfigure(1, weight=1)
         self.platform0.columnconfigure(2, weight=1)
         self.platform0.columnconfigure(3, weight=1)
-        self.platform0.grid(row=0, column=0, sticky=tk.W + tk.E)
+        self.platform0.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N + tk.S)
+
+        self.button_save = tk.Button(self.platform0, text="Save").grid(row=0, column=1, sticky= tk.W + tk.E, pady=10, padx=5)
+        self.button_settings = tk.Button(self.platform0, text="Settings").grid(row=0, column=0, sticky= tk.W + tk.E, pady=10, padx=5)
         #   Platform0
 
 
@@ -60,7 +66,7 @@ class Game:
         self.platform1.columnconfigure(1, weight=1)
         self.platform1.columnconfigure(2, weight=1)
         self.platform1.columnconfigure(3, weight=1)
-        self.platform1.grid(row=0, column=1, sticky=tk.W + tk.E)
+        self.platform1.grid(row=0, column=1, sticky=tk.W + tk.E + tk.N + tk.S)
 
         self.button_taptap = tk.Button(self.platform1, command=self.taptap, text=str(round(tap_value, 2)) + "$ / TAP", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_taptap.grid(row=0, columnspan=4, sticky=tk.W + tk.E, pady=5)
@@ -127,12 +133,12 @@ class Game:
 
 
         #   Platform2
-        self.platform2 = tk.Frame(self.game_platform, bg=self.bg)
+        self.platform2 = tk.Frame(self.game_platform, bg="gray")
         self.platform2.columnconfigure(0, weight=1)
         self.platform2.columnconfigure(1, weight=1)
         self.platform2.columnconfigure(2, weight=1)
         self.platform2.columnconfigure(3, weight=1)
-        self.platform2.grid(row=0, column=2, sticky=tk.W + tk.E)
+        self.platform2.grid(row=0, column=2, sticky=tk.W + tk.E + tk.N + tk.S)
         #   Platform2
 
         self.check_upgrades()
