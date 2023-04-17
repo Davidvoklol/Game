@@ -55,8 +55,9 @@ class Game:
         self.platform0.columnconfigure(3, weight=1)
         self.platform0.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N + tk.S)
 
-        self.button_save = tk.Button(self.platform0, text="Save").grid(row=0, column=1, sticky= tk.W + tk.E, pady=10, padx=5)
+        self.button_save = tk.Button(self.platform0, text="Save game").grid(row=0, column=1, sticky= tk.W + tk.E, pady=10, padx=5)
         self.button_settings = tk.Button(self.platform0, text="Settings").grid(row=0, column=0, sticky= tk.W + tk.E, pady=10, padx=5)
+        self.button_stats = tk.Button(self.platform0, text="Stats").grid(row=0, column=2, sticky= tk.W + tk.E, pady=10, padx=5)
         #   Platform0
 
 
