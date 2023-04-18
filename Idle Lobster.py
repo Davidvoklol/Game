@@ -43,21 +43,29 @@ class Game:
         self.game_platform.columnconfigure(0, weight=1)
         self.game_platform.columnconfigure(1, weight=1)
         self.game_platform.columnconfigure(2, weight=1)
-        self.game_platform.pack(fill="x", padx=50, pady=20)
+        self.game_platform.columnconfigure(3, weight=1)
+        self.game_platform.columnconfigure(4, weight=1)
+        self.game_platform.pack(fill="x")
         #   Game Platform
 
 
         #   Platform0
-        self.platform0 = tk.Frame(self.game_platform, bg="gray")
+        self.platform0 = tk.Frame(self.game_platform, bg=self.bg)
         self.platform0.columnconfigure(0, weight=1)
         self.platform0.columnconfigure(1, weight=1)
-        self.platform0.columnconfigure(2, weight=1)
-        self.platform0.columnconfigure(3, weight=1)
-        self.platform0.grid(row=0, column=0, sticky=tk.W + tk.E + tk.N + tk.S)
+        self.platform0.grid(row=0, column=0, sticky=tk.W + tk.N + tk.S, padx=10)
 
-        self.button_save = tk.Button(self.platform0, text="Save game").grid(row=0, column=1, sticky= tk.W + tk.E, pady=10, padx=5)
-        self.button_settings = tk.Button(self.platform0, text="Settings").grid(row=0, column=0, sticky= tk.W + tk.E, pady=10, padx=5)
-        self.button_stats = tk.Button(self.platform0, text="Stats").grid(row=0, column=2, sticky= tk.W + tk.E, pady=10, padx=5)
+        self.button_save = tk.Button(self.platform0, text="Save game", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=0, column=1, sticky= tk.W + tk.E, pady=5, padx=5)
+        self.button_settings = tk.Button(self.platform0, text="Settings", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=0, column=0, sticky= tk.W + tk.E, pady=5)
+        self.button_stats = tk.Button(self.platform0, text="Stats", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=1, column=0, columnspan=2, sticky= tk.W + tk.E, pady=5)
+        self.label_autolobsters_earning = tk.Label(self.platform0, text="Auto earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_bob_earning = tk.Label(self.platform0, text="Bob earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_doodle_earning = tk.Label(self.platform0, text="Doodle earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=4, columnspan=2, pady=5, sticky=tk.W + tk.E)
+        self.label_winky_earning = tk.Label(self.platform0, text="Winky earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=5, columnspan=2, pady=5, sticky=tk.W + tk.E)
+        self.label_fred_earning = tk.Label(self.platform0, text="Fred earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=6, columnspan=2, pady=5, sticky=tk.W + tk.E)
+        self.label_giggles_earning = tk.Label(self.platform0, text="Giggles earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=7, columnspan=2, pady=5, sticky=tk.W + tk.E)
+        self.label_larry_earning = tk.Label(self.platform0, text="Larry earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=8, columnspan=2, pady=5, sticky=tk.W + tk.E)
+        self.label_david_earning = tk.Label(self.platform0, text="David earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=9, columnspan=2, pady=5, sticky=tk.W + tk.E)
         #   Platform0
 
 
@@ -67,7 +75,7 @@ class Game:
         self.platform1.columnconfigure(1, weight=1)
         self.platform1.columnconfigure(2, weight=1)
         self.platform1.columnconfigure(3, weight=1)
-        self.platform1.grid(row=0, column=1, sticky=tk.W + tk.E + tk.N + tk.S)
+        self.platform1.grid(row=0, column=1, columnspan=2, sticky=tk.W + tk.E + tk.N + tk.S, padx=10)
 
         self.button_taptap = tk.Button(self.platform1, command=self.taptap, text=str(round(tap_value, 2)) + "$ / TAP", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_taptap.grid(row=0, columnspan=4, sticky=tk.W + tk.E, pady=5)
@@ -134,12 +142,12 @@ class Game:
 
 
         #   Platform2
-        self.platform2 = tk.Frame(self.game_platform, bg="gray")
+        self.platform2 = tk.Frame(self.game_platform, bg=self.bg)
         self.platform2.columnconfigure(0, weight=1)
         self.platform2.columnconfigure(1, weight=1)
         self.platform2.columnconfigure(2, weight=1)
         self.platform2.columnconfigure(3, weight=1)
-        self.platform2.grid(row=0, column=2, sticky=tk.W + tk.E + tk.N + tk.S)
+        self.platform2.grid(row=0, column=4, sticky=tk. W + tk.E + tk.N + tk.S)
         #   Platform2
 
         self.check_upgrades()
@@ -248,6 +256,8 @@ class Game:
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_bob.destroy()
         self.button_unlock_doodle.grid(row=4, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        self.label_autolobsters_earning.grid(row=2, columnspan=2, pady=5, sticky=tk.W + tk.E)
+        self.label_bob_earning.grid(row=3, columnspan=2, pady=5, sticky=tk.W + tk.E)
         bob_state = "destroyed"
         self.label_bob.config(text="Bob Lobster: lvl " + str(bob_lvl))
         self.button_bob.config(text="Upgrade: " + str(round(bob_upgrade_cost, 2)) + "$")
