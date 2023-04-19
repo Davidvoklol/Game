@@ -83,7 +83,7 @@ def larry(a):
         larry_value = ((larry_lvl / 2) ** 2) * 9
         larry_upgrade_cost = larry_value * 60 + larry_lvl ** 4.094
 
-larry(100)
+larry(1000)
 
 """
 value on lvl 1000

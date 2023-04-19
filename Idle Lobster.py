@@ -7,6 +7,7 @@ class User():
     def __init__(user):
         user.window = tk.Tk()
         user.window.title("Beginning")
+        user.window.geometry("500x250")
         user.title = tk.Label()
         user.window.mainloop()
 
@@ -53,19 +54,19 @@ class Game:
         self.platform0 = tk.Frame(self.game_platform, bg=self.bg)
         self.platform0.columnconfigure(0, weight=1)
         self.platform0.columnconfigure(1, weight=1)
-        self.platform0.grid(row=0, column=0, sticky=tk.W + tk.N + tk.S, padx=10)
+        self.platform0.grid(row=0, column=0, sticky=tk.W + tk.N + tk.S, padx=40)
 
         self.button_save = tk.Button(self.platform0, text="Save game", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=0, column=1, sticky= tk.W + tk.E, pady=5, padx=5)
         self.button_settings = tk.Button(self.platform0, text="Settings", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=0, column=0, sticky= tk.W + tk.E, pady=5)
         self.button_stats = tk.Button(self.platform0, text="Stats", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=1, column=0, columnspan=2, sticky= tk.W + tk.E, pady=5)
         self.label_autolobsters_earning = tk.Label(self.platform0, text="Auto earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
         self.label_bob_earning = tk.Label(self.platform0, text="Bob earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
-        self.label_doodle_earning = tk.Label(self.platform0, text="Doodle earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=4, columnspan=2, pady=5, sticky=tk.W + tk.E)
-        self.label_winky_earning = tk.Label(self.platform0, text="Winky earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=5, columnspan=2, pady=5, sticky=tk.W + tk.E)
-        self.label_fred_earning = tk.Label(self.platform0, text="Fred earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=6, columnspan=2, pady=5, sticky=tk.W + tk.E)
-        self.label_giggles_earning = tk.Label(self.platform0, text="Giggles earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=7, columnspan=2, pady=5, sticky=tk.W + tk.E)
-        self.label_larry_earning = tk.Label(self.platform0, text="Larry earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=8, columnspan=2, pady=5, sticky=tk.W + tk.E)
-        self.label_david_earning = tk.Label(self.platform0, text="David earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid").grid(row=9, columnspan=2, pady=5, sticky=tk.W + tk.E)
+        self.label_doodle_earning = tk.Label(self.platform0, text="Doodle earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_winky_earning = tk.Label(self.platform0, text="Winky earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_fred_earning = tk.Label(self.platform0, text="Fred earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_giggles_earning = tk.Label(self.platform0, text="Giggles earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_larry_earning = tk.Label(self.platform0, text="Larry earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_david_earning = tk.Label(self.platform0, text="David earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
         #   Platform0
 
 
@@ -157,7 +158,6 @@ class Game:
     
     
     def check_upgrades(self):
-        global cash, tap_upgrade_cost, bob_unlcok_cost, doodle_unlcok_cost, doodle_state
 
         if cash >= tap_upgrade_cost:
             self.button_upgrade_taptap.config(state="active")
@@ -229,6 +229,17 @@ class Game:
             self.button_larry.config(state="active")
         else:
             self.button_larry.config(state="disabled")
+        
+        # david purchase
+        if cash >= david_unlcok_cost and david_state == "active":
+            self.button_unlock_david.config(state="active")
+        elif cash < david_unlcok_cost and david_state == "active":
+            self.button_unlock_david.config(state="disabled")
+        # david upgrade
+        if cash >= david_upgrade_cost and david_state == "destroyed":
+            self.button_david.config(state="active")
+        else:
+            self.button_david.config(state="disabled")
 
 
     def taptap(self):
@@ -256,8 +267,8 @@ class Game:
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_bob.destroy()
         self.button_unlock_doodle.grid(row=4, columnspan=4, sticky=tk.W + tk.E, pady=5)
-        self.label_autolobsters_earning.grid(row=2, columnspan=2, pady=5, sticky=tk.W + tk.E)
-        self.label_bob_earning.grid(row=3, columnspan=2, pady=5, sticky=tk.W + tk.E)
+        self.label_autolobsters_earning.grid(row=2, columnspan=2, pady=20, sticky=tk.W + tk.E)
+        self.label_bob_earning.grid(row=3, columnspan=2, pady=20, sticky=tk.W + tk.E)
         bob_state = "destroyed"
         self.label_bob.config(text="Bob Lobster: lvl " + str(bob_lvl))
         self.button_bob.config(text="Upgrade: " + str(round(bob_upgrade_cost, 2)) + "$")
@@ -288,6 +299,7 @@ class Game:
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_doodle.destroy()
         self.button_unlock_winky.grid(row=6, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        self.label_doodle_earning.grid(row=4, columnspan=2, pady=20, sticky=tk.W + tk.E)
         doodle_state = "destroyed"
         self.label_doodle.config(text="Doodle Lobster: lvl " + str(doodle_lvl))
         self.button_doodle.config(text="Upgrade: " + str(round(doodle_upgrade_cost, 2)) + "$")
@@ -318,6 +330,7 @@ class Game:
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_winky.destroy()
         self.button_unlock_fred.grid(row=8, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        self.label_winky_earning.grid(row=5, columnspan=2, pady=20, sticky=tk.W + tk.E)
         winky_state = "destroyed"
         self.label_winky.config(text="Winky Lobster: lvl " + str(winky_lvl))
         self.button_winky.config(text="Upgrade: " + str(round(winky_upgrade_cost, 2)) + "$")
@@ -348,6 +361,7 @@ class Game:
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_fred.destroy()
         self.button_unlock_giggles.grid(row=10, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        self.label_fred_earning.grid(row=6, columnspan=2, pady=20, sticky=tk.W + tk.E)
         fred_state = "destroyed"
         self.label_fred.config(text="Fred Lobster: lvl " + str(fred_lvl))
         self.button_fred.config(text="Upgrade: " + str(round(fred_upgrade_cost, 2)) + "$")
@@ -378,6 +392,7 @@ class Game:
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_giggles.destroy()
         self.button_unlock_larry.grid(row=12, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        self.label_giggles_earning.grid(row=7, columnspan=2, pady=20, sticky=tk.W + tk.E)
         giggles_state = "destroyed"
         self.label_giggles.config(text="Giggles Lobster: lvl " + str(giggles_lvl))
         self.button_giggles.config(text="Upgrade: " + str(round(giggles_upgrade_cost, 2)) + "$")
@@ -401,13 +416,14 @@ class Game:
         self.button_giggles.config(text="Upgrade: " + str(round(giggles_upgrade_cost, 2)) + "$")
         self.check_upgrades()
     
-    #LARRY
+    # LARRY
     def larry_purchase(self):
         global cash, larry_unlcok_cost, larry_state
         cash -= larry_unlcok_cost
         self.display_money.config(text="Money: " + str(round(cash, 2)))
         self.button_unlock_larry.destroy()
         self.button_unlock_david.grid(row=14, columnspan=4, sticky=tk.W + tk.E, pady=5)
+        self.label_larry_earning.grid(row=8, columnspan=2, pady=20, sticky=tk.W + tk.E)
         larry_state = "destroyed"
         self.label_larry.config(text="Larry Lobster: lvl " + str(larry_lvl))
         self.button_larry.config(text="Upgrade: " + str(round(larry_upgrade_cost, 2)) + "$")
@@ -431,10 +447,12 @@ class Game:
         self.button_larry.config(text="Upgrade: " + str(round(larry_upgrade_cost, 2)) + "$")
         self.check_upgrades()
     
+    # DAVID
     def david_purchase(self):
         global cash, david_unlcok_cost, david_state
         cash -= david_unlcok_cost
         self.display_money.config(text="Money: " + str(round(cash, 2)))
+        self.label_david_earning.grid(row=9, columnspan=2, pady=60, sticky=tk.W + tk.E)
         self.button_unlock_david.destroy()
         david_state = "destroyed"
         self.label_david.config(text="David Lobster: lvl " + str(david_lvl))
@@ -461,6 +479,5 @@ class Game:
 
     
 
-    
-User()
+
 Game("#fb551c")
