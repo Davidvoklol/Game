@@ -83,7 +83,18 @@ def larry(a):
         larry_value = ((larry_lvl / 2) ** 2) * 9
         larry_upgrade_cost = larry_value * 60 + larry_lvl ** 4.094
 
-larry(1000)
+def david(a):
+    global david_lvl, david_upgrade_cost, david_value
+    for x in range(a):
+        print("david lvl:", david_lvl)
+        print("david value/sec:", int(david_value))
+        print("david upgrade cost:", round(david_upgrade_cost, 2))
+        print("earning / min:", round(david_value * 60, 0), "\n")
+        david_lvl += 1
+        david_value = david_lvl ** 0.805
+        david_upgrade_cost = (david_lvl * 100) ** 2.5
+
+david(100)
 
 """
 value on lvl 1000

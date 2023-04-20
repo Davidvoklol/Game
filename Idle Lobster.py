@@ -137,7 +137,7 @@ class Game:
         
         self.label_david = tk.Label(self.frame_david, text="Secret Lobster...", height=3, width=1, font=("Courier", 15, "bold"), relief="solid", bg="#cc562d")
         self.label_david.grid(row=0, column=0, sticky=tk.W + tk.E, padx=5, pady=5)
-        self.button_david = tk.Button(self.frame_david, text="---------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
+        self.button_david = tk.Button(self.frame_david, command=self.david_upgrade, text="---------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
         self.button_david.grid(row=0, column=1, sticky=tk.W + tk.E, padx=5, pady=5)
         #   Platform1
 
@@ -460,9 +460,9 @@ class Game:
         self.david_earning()
     
     def david_earning(self):
-        global cash, david_value
-        cash += david_value
-        self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
+        global cash, david_value, golden_lobster
+        golden_lobster += david_value
+        self.display_lobster.config(text="Golden Lobsters: " + str(int(golden_lobster)))
         self.window.after(1000, self.david_earning)
         self.check_upgrades()
     
@@ -470,10 +470,10 @@ class Game:
         global david_lvl, david_upgrade_cost, cash, david_value, david_unlcok_cost
         cash -= david_upgrade_cost
         david_lvl += 1
-        david_value = david_unlcok_cost / 500 * david_lvl
-        david_upgrade_cost = david_value * david_lvl * 100
+        david_value = david_lvl ** 0.805
+        david_upgrade_cost = david_upgrade_cost = (david_lvl * 100) ** 2.5
         self.display_money.config(text="Money: " + str(round(cash, 2)) + "$")
-        self.label_david.config(text="david Lobster: lvl " + str(david_lvl))
+        self.label_david.config(text="David Lobster: lvl " + str(david_lvl))
         self.button_david.config(text="Upgrade: " + str(round(david_upgrade_cost, 2)) + "$")
         self.check_upgrades()
 
