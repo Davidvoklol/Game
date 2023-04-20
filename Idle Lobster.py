@@ -51,7 +51,7 @@ class Game:
 
 
         #   Platform0
-        self.platform0 = tk.Frame(self.game_platform, bg=self.bg)
+        self.platform0 = tk.Frame(self.game_platform, bg="gray")
         self.platform0.columnconfigure(0, weight=1)
         self.platform0.columnconfigure(1, weight=1)
         self.platform0.grid(row=0, column=0, sticky=tk.W + tk.N + tk.S, padx=40)
@@ -59,19 +59,19 @@ class Game:
         self.button_save = tk.Button(self.platform0, text="Save game", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=0, column=1, sticky= tk.W + tk.E, pady=5, padx=5)
         self.button_settings = tk.Button(self.platform0, text="Settings", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=0, column=0, sticky= tk.W + tk.E, pady=5)
         self.button_stats = tk.Button(self.platform0, text="Stats", font=("Terminal", 15, "bold"), bg="black", activebackground="black", fg="white", activeforeground="white").grid(row=1, column=0, columnspan=2, sticky= tk.W + tk.E, pady=5)
-        self.label_autolobsters_earning = tk.Label(self.platform0, text="Auto earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
-        self.label_bob_earning = tk.Label(self.platform0, text="Bob earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
-        self.label_doodle_earning = tk.Label(self.platform0, text="Doodle earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
-        self.label_winky_earning = tk.Label(self.platform0, text="Winky earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
-        self.label_fred_earning = tk.Label(self.platform0, text="Fred earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
-        self.label_giggles_earning = tk.Label(self.platform0, text="Giggles earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
-        self.label_larry_earning = tk.Label(self.platform0, text="Larry earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
-        self.label_david_earning = tk.Label(self.platform0, text="David earning / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_autolobsters_earning = tk.Label(self.platform0, text="Auto / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_bob_earning = tk.Label(self.platform0, text="Bob / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_doodle_earning = tk.Label(self.platform0, text="Doodle / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_winky_earning = tk.Label(self.platform0, text="Winky / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_fred_earning = tk.Label(self.platform0, text="Fred / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_giggles_earning = tk.Label(self.platform0, text="Giggles / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_larry_earning = tk.Label(self.platform0, text="Larry / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
+        self.label_david_earning = tk.Label(self.platform0, text="David / sec: $$$", font=("Segoe Print", 11, "bold"), bg=self.bg, relief="solid")
         #   Platform0
 
 
         #   Platform1
-        self.platform1 = tk.Frame(self.game_platform, bg=self.bg)
+        self.platform1 = tk.Frame(self.game_platform, bg="gray")
         self.platform1.columnconfigure(0, weight=1)
         self.platform1.columnconfigure(1, weight=1)
         self.platform1.columnconfigure(2, weight=1)
@@ -136,14 +136,14 @@ class Game:
         self.frame_david.grid(row=15, columnspan=4, sticky=tk.W + tk.E, pady=35)
         
         self.label_david = tk.Label(self.frame_david, text="Secret Lobster...", height=3, width=1, font=("Courier", 15, "bold"), relief="solid", bg="#cc562d")
-        self.label_david.grid(row=0, column=0, sticky=tk.W + tk.E, padx=5, pady=5)
+        self.label_david.grid(row=0, column=0, sticky=tk.W + tk.E, pady=5)
         self.button_david = tk.Button(self.frame_david, command=self.david_upgrade, text="---------", height=2, width=1, font=("Courier", 14, "bold"), bg="#ab350c", fg="White", activebackground="#ad2d00", activeforeground="white")
-        self.button_david.grid(row=0, column=1, sticky=tk.W + tk.E, padx=5, pady=5)
+        self.button_david.grid(row=0, column=1, sticky=tk.W + tk.E, pady=5)
         #   Platform1
 
 
         #   Platform2
-        self.platform2 = tk.Frame(self.game_platform, bg=self.bg)
+        self.platform2 = tk.Frame(self.game_platform, bg="gray")
         self.platform2.columnconfigure(0, weight=1)
         self.platform2.columnconfigure(1, weight=1)
         self.platform2.columnconfigure(2, weight=1)
@@ -240,6 +240,15 @@ class Game:
             self.button_david.config(state="active")
         else:
             self.button_david.config(state="disabled")
+    
+    def earning_matters_update(self):
+        self.label_bob_earning.config(text="Bob / sec: " + str(round(bob_value, 2)) + "$")
+        self.label_doodle_earning.config(text="Doodle / sec: " + str(round(doodle_value, 2)) + "$")
+        self.label_winky_earning.config(text="Winky / sec: " + str(round(winky_value, 2)) + "$")
+        self.label_fred_earning.config(text="Fred / sec: " + str(round(fred_value, 2)) + "$")
+        self.label_giggles_earning.config(text="Giggles / sec: " + str(round(giggles_value, 2)) + "$")
+        self.label_larry_earning.config(text="Larry / sec: " + str(round(larry_value, 2)) + "$")
+        self.label_david_earning.config(text="David / sec: " + str(int(david_value)))
 
 
     def taptap(self):
@@ -273,6 +282,7 @@ class Game:
         self.label_bob.config(text="Bob Lobster: lvl " + str(bob_lvl))
         self.button_bob.config(text="Upgrade: " + str(round(bob_upgrade_cost, 2)) + "$")
         self.bob_earning()
+        self.earning_matters_update()
     
     def bob_earning(self):
         global cash, bob_value
@@ -291,6 +301,7 @@ class Game:
         self.label_bob.config(text="Bob Lobster: lvl " + str(bob_lvl))
         self.button_bob.config(text="Upgrade: " + str(round(bob_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.earning_matters_update()
     
     # DOODLE
     def doodle_purchase(self):
@@ -304,6 +315,7 @@ class Game:
         self.label_doodle.config(text="Doodle Lobster: lvl " + str(doodle_lvl))
         self.button_doodle.config(text="Upgrade: " + str(round(doodle_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.earning_matters_update()
     
     def doodle_earning(self):
         global cash, doodle_value
@@ -322,6 +334,7 @@ class Game:
         self.label_doodle.config(text="Doodle Lobster: lvl " + str(doodle_lvl))
         self.button_doodle.config(text="Upgrade: " + str(round(doodle_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.earning_matters_update()
 
     # WINKY
     def winky_purchase(self):
@@ -335,6 +348,7 @@ class Game:
         self.label_winky.config(text="Winky Lobster: lvl " + str(winky_lvl))
         self.button_winky.config(text="Upgrade: " + str(round(winky_upgrade_cost, 2)) + "$")
         self.winky_earning()
+        self.earning_matters_update()
     
     def winky_earning(self):
         global cash, winky_value
@@ -353,6 +367,7 @@ class Game:
         self.label_winky.config(text="Winky Lobster: lvl " + str(winky_lvl))
         self.button_winky.config(text="Upgrade: " + str(round(winky_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.earning_matters_update()
     
     # FRED
     def fred_purchase(self):
@@ -366,6 +381,7 @@ class Game:
         self.label_fred.config(text="Fred Lobster: lvl " + str(fred_lvl))
         self.button_fred.config(text="Upgrade: " + str(round(fred_upgrade_cost, 2)) + "$")
         self.fred_earning()
+        self.earning_matters_update()
 
     def fred_earning(self):
         global cash, fred_value
@@ -384,6 +400,7 @@ class Game:
         self.label_fred.config(text="Fred Lobster: lvl " + str(fred_lvl))
         self.button_fred.config(text="Upgrade: " + str(round(fred_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.earning_matters_update()
     
     # GIGGLES
     def giggles_purchase(self):
@@ -397,6 +414,7 @@ class Game:
         self.label_giggles.config(text="Giggles Lobster: lvl " + str(giggles_lvl))
         self.button_giggles.config(text="Upgrade: " + str(round(giggles_upgrade_cost, 2)) + "$")
         self.giggles_earning()
+        self.earning_matters_update()
 
     def giggles_earning(self):
         global cash, giggles_value
@@ -415,6 +433,7 @@ class Game:
         self.label_giggles.config(text="Giggles Lobster: lvl " + str(giggles_lvl))
         self.button_giggles.config(text="Upgrade: " + str(round(giggles_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.earning_matters_update()
     
     # LARRY
     def larry_purchase(self):
@@ -428,6 +447,7 @@ class Game:
         self.label_larry.config(text="Larry Lobster: lvl " + str(larry_lvl))
         self.button_larry.config(text="Upgrade: " + str(round(larry_upgrade_cost, 2)) + "$")
         self.larry_earning()
+        self.earning_matters_update()
 
     def larry_earning(self):
         global cash, larry_value
@@ -446,6 +466,7 @@ class Game:
         self.label_larry.config(text="Larry Lobster: lvl " + str(larry_lvl))
         self.button_larry.config(text="Upgrade: " + str(round(larry_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.earning_matters_update()
     
     # DAVID
     def david_purchase(self):
@@ -458,6 +479,7 @@ class Game:
         self.label_david.config(text="David Lobster: lvl " + str(david_lvl))
         self.button_david.config(text="Upgrade: " + str(round(david_upgrade_cost, 2)) + "$")
         self.david_earning()
+        self.earning_matters_update()
     
     def david_earning(self):
         global cash, david_value, golden_lobster
@@ -476,6 +498,7 @@ class Game:
         self.label_david.config(text="David Lobster: lvl " + str(david_lvl))
         self.button_david.config(text="Upgrade: " + str(round(david_upgrade_cost, 2)) + "$")
         self.check_upgrades()
+        self.earning_matters_update()
 
     
 
