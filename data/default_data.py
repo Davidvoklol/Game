@@ -1,3 +1,7 @@
+"""Lobster név ----> Dezső (ötlet gazda: Lázár)"""
+
+
+
 name = ""
 cash = 0
 golden_lobster = 0
