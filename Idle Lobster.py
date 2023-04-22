@@ -51,7 +51,7 @@ class Game:
 
 
         #   Platform0
-        self.platform0 = tk.Frame(self.game_platform, bg="gray")
+        self.platform0 = tk.Frame(self.game_platform, bg=self.bg)
         self.platform0.columnconfigure(0, weight=1)
         self.platform0.columnconfigure(1, weight=1)
         self.platform0.grid(row=0, column=0, sticky=tk.W + tk.N + tk.S, padx=40)
@@ -71,7 +71,7 @@ class Game:
 
 
         #   Platform1
-        self.platform1 = tk.Frame(self.game_platform, bg="gray")
+        self.platform1 = tk.Frame(self.game_platform, bg=self.bg)
         self.platform1.columnconfigure(0, weight=1)
         self.platform1.columnconfigure(1, weight=1)
         self.platform1.columnconfigure(2, weight=1)
@@ -143,7 +143,7 @@ class Game:
 
 
         #   Platform2
-        self.platform2 = tk.Frame(self.game_platform, bg="gray")
+        self.platform2 = tk.Frame(self.game_platform, bg=self.bg)
         self.platform2.columnconfigure(0, weight=1)
         self.platform2.columnconfigure(1, weight=1)
         self.platform2.columnconfigure(2, weight=1)
